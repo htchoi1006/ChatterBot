@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Stress </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+
+    <style type="text/css">
+      body {
+        background: white;
+      }
+      #contents {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(1, 150px);
+      }
+      #label {
+        font-size: 50px;
+        color: #434B56;
+        text-align: center;
+        margin-left:-1300px;
+        margin-top:-50px;
+      }
+      #result {
+        font-size: 20px;
+
+      }
+      .lound {
+        margin: 15px;
+        margin-left: 700px;
+        width: 650px;
+        height: 450px;
+        background: whitesmoke;
+        font-size: 30px;
+        color: black;
+        text-align:center;
+        margin-top:-100px;
+      }
+      .graph {
+        width: 600px;
+        height: 380px;
+        margin: 15px;
+        background: whitesmoke;
+        }
+      .button {
+      display: inline-block;
+   padding: 15px 25px;
+   font-size: 24px;
+   cursor: pointer;
+   text-align: center;
+
+    text-decoration: none;
+   outline: none;
+    color: #fff;
+   background-color: #4CAF50;
+   border: none;
+   border-radius: 15px;
+   box-shadow: 0 9px #999;
+   margin-left:200px;
+ }
+    .large-row-spacer{
+    margin-left:-30px;
+
+      }
+      .button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+    </style>
+  </head>
+  <body>
+<p align = "Left">
+  <a rel="nofollow" href="main.html" style="text-decoration:none">홈으로</a>
+  </p>
+
+      <div id="contents"></br>
+        <div id="label"> [ Stress Level ]
+          <div id="result">
+          <center>
+            진단 결과 : <a href="/Users/choihyeoktae/Downloads/duritone/output.txt" style="text-decoration:none color:#000000" onClick="return show_hide_box(this,500,450,'1px dotted') ">눌러 주세용</a>.
+          </center>
+        </div>
+      </div>
+        <div class="lound"> [ Bar ]
+          <div class="graph">
+            <canvas id="chartBarGraph" style="width:600px; height:400px"></cnavas>
+          </div>
+        </div>
+      </div>
+
+      <script>
+
+
+
+      function move_box(an, box) {
+        var cleft = -600;
+        var ctop = 0;
+        var obj = an;
+        while (obj.offsetParent) {
+          cleft += obj.offsetLeft;
+          ctop += obj.offsetTop;
+          obj = obj.offsetParent;
+        }
+        box.style.left = cleft + 'px';
+        ctop += an.offsetHeight + 8;
+        if (document.body.currentStyle &&
+          document.body.currentStyle['marginTop']) {
+          ctop += parseInt(
+            document.body.currentStyle['marginTop']);
+        }
+        box.style.top = ctop + 'px';
+      }
+
+      function show_hide_box(an, width, height, borderStyle) {
+        var href = an.href;
+        var boxdiv = document.getElementById(href);
+
+        if (boxdiv != null) {
+          if (boxdiv.style.display=='none') {
+            move_box(an, boxdiv);
+            boxdiv.style.display='block';
+          } else
+            boxdiv.style.display='none';
+          return false;
+        }
+
+        boxdiv = document.createElement('div');
+        boxdiv.setAttribute('id', href);
+        boxdiv.style.display = 'block';
+        boxdiv.style.position = 'absolute';
+        boxdiv.style.width = width + 'px';
+        boxdiv.style.height = height + 'px';
+        boxdiv.style.border = borderStyle;
+        boxdiv.style.backgroundColor = '#fff';
+
+        var contents = document.createElement('iframe');
+        contents.scrolling = 'no';
+        contents.frameBorder = '0';
+        contents.style.width = width + 'px';
+        contents.style.height = height + 'px';
+        contents.src = href;
+
+        boxdiv.appendChild(contents);
+        document.body.appendChild(boxdiv);
+        move_box(an, boxdiv);
+
+        return false;
+      }
+
+
+      //---------------------------Chart.js---------------------------
+        document.addEventListener('DOMContentLoaded', function () {
+        insertChartBarGraph();
+        });
+
+
+        function insertChartBarGraph() {
+          var insertChartBarGraph = new Chart(document.getElementById("chartBarGraph"), {
+            type: "bar",
+              data: {
+                  labels: ["학업·진로", "연애", "친구", "스트레스"],
+                  datasets: [
+                      {
+                          label: "RESULT",
+                          backgroundColor: [
+                              'rgba(116, 19, 60, 0.5)',
+                              'rgba(194, 40, 76, 0.5)',
+                              'rgba(244, 243, 238, 0.5)',
+                              'rgba(245, 183, 198, 0.5)'],
+                          borderWidth: 2,
+                          data: [15, 13, 13, 21]
+                      }
+                  ]
+                },
+                  options: {
+                      legend: { display: false },
+                      title: {
+                          display: true,
+                          text: 'Calculate Result'
+
+                      },
+                      scales: {
+                          yAxes: [{
+                              ticks: {
+                                  beginAtZero: true
+                              }
+                          }]
+                      }
+                    }
+          });
+        }
+
+      </script>
+<button class="button" onclick="location.href='study.html'">학습/진로 </button>
+    <button class="button" onclick="location.href='love.html'">연애 </button>
+    <button class="button" onclick="location.href='friends.html'">친구 </button>
+    <button class="button" onclick="location.href='stress.html'">스트레스 </button>
+  </body>
+</html>
