@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Stress </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+
+    <style type="text/css">
+      body {
+        background: lightgray;
+      }
+      #contents {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(1, 150px);
+      }
+      #label {
+        font-size: 50px;
+        color: #434B56;
+        text-align: center;
+        margin-left: -700px;
+        margin-top: 20px;
+      }
+      .lound {
+        margin: 15px;
+        width: 650px;
+        height: 450px;
+        background: whitesmoke;
+        font-size: 30px;
+        color: black;
+        text-align:center;
+      }
+      .graph {
+        width: 600px;
+        height: 380px;
+        margin: 15px;
+        background: whitesmoke;
+      }
+    </style>
+  </head>
+  <body>
+
+
+      <div id="contents"></br>
+        <div id="label"> [ Stress Level ] </div>
+
+        <div class="lound"> [ Bar ]
+          <div class="graph">
+            <canvas id="chartBarGraph" style="width:600px; height:400px"></cnavas>
+          </div>
+        </div>
+
+        <div class="lound"> [ Line ]
+          <div class="graph">
+            <canvas id="chartLineGraph" style="width:600px; height:400px"></cnavas>
+          </div>
+        </div>
+
+        <div class="lound"> [ Radar ]
+          <div class="graph">
+            <canvas id="chartRadarGraph" style="width:600px; height:400px"></cnavas>
+          </div>
+        </div>
+
+        <div class="lound"> [ Circle ]
+          <div class="graph">
+            <canvas id="chartCircleGraph" style="width:600px; height:380px"></cnavas>
+          </div>
+        </div>
+
+      </div>
+
+      <script>
+      //---------------------------Chart.js---------------------------
+        document.addEventListener('DOMContentLoaded', function () {
+        insertChartBarGraph();
+        insertChartLineGraph();
+        insertChartRadarGraph();
+        insertChartCircleGraph();
+        });
+
+
+        function insertChartBarGraph() {
+
+          var insertChartBarGraph = new Chart(document.getElementById("chartBarGraph"), {
+            type: "bar",
+              data: {
+                  labels: ["학업·진로", "연애", "친구", "스트레스"],
+                  datasets: [
+                      {
+                          label: "RESULT",
+                          backgroundColor: [
+                              'rgba(116, 19, 60, 0.5)',
+                              'rgba(194, 40, 76, 0.5)',
+                              'rgba(244, 243, 238, 0.5)',
+                              'rgba(245, 183, 198, 0.5)'],
+                          borderWidth: 2,
+                          data: [50, 70, 30, 20, 60]
+                      }
+                  ]
+                },
+                  options: {
+                      legend: { display: false },
+                      title: {
+                          display: true,
+                          text: 'Calculate Result'
+
+                      },
+                      scales: {
+                          yAxes: [{
+                              ticks: {
+                                  beginAtZero: true
+                              }
+                          }]
+                      }
+                    }
+          });
+        }
+
+        function insertChartLineGraph() {
+
+          var insertChartLineGraph = new Chart(document.getElementById("chartLineGraph"), {
+            type: "line",
+              data: {
+                  labels: ["학업·진로", "연애", "친구", "스트레스"],
+                  datasets: [
+                      {
+                          label: "RESULT",
+                          backgroundColor: [
+                              'rgba(85, 117, 138, 0.5)'],
+                          borderWidth: 2,
+                          data: [10, 50, 30, 90]
+                      }
+                  ]
+              },
+              options: {
+                  legend: { display: false },
+                  title: {
+                      display: true,
+                      text: 'Calculate Result'
+
+                  },
+                  scales: {
+                      yAxes: [{
+                          ticks: {
+                              beginAtZero: true
+                          }
+                      }]
+                  }
+                }
+          });
+        }
+
+        function insertChartRadarGraph() {
+
+          var insertChartRadarGraph = new Chart(document.getElementById("chartRadarGraph"), {
+            type: "radar",
+              data: {
+                  labels: ["학업·진로", "연애", "친구", "스트레스"],
+                  datasets: [
+                      {
+                          label: "RESULT",
+                          backgroundColor: [
+                              'rgba(151, 131, 166, 0.5)'],
+                          borderWidth: 2,
+                          data: [13, 21, 7, 11]
+                      }
+                  ]
+              },
+              options: {
+                  legend: { display: false },
+                  title: {
+                      display: true,
+                      text: 'Calculate Result'
+
+                  }
+              }
+          });
+        }
+
+        function insertChartCircleGraph() {
+
+          var insertChartCircleGraph = new Chart(document.getElementById("chartCircleGraph"), {
+            type: "pie",
+              data: {
+                  labels: ["학업·진로", "연애", "친구", "스트레스"],
+                  datasets: [
+                      {
+                          label: "RESULT",
+                          backgroundColor: [
+                              'rgba(255, 99, 132, 0.5)',
+                              'rgba(54, 162, 235, 0.5)',
+                              'rgba(255, 206, 86, 0.5)',
+                              'rgba(75, 192, 192, 0.5)'],
+                          borderWidth: 2,
+                          data: [10, 50, 30, 90]
+                      }
+                  ]
+              },
+              options: {
+                  title: {
+                      display: true,
+                      text: 'Calculate Result'
+
+                  }
+                }
+          });
+        }
+      </script>
+  </body>
+</html>
